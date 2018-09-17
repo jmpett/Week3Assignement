@@ -48,45 +48,45 @@ public class StartProgram {
 			System.out.print("Enter the athlete's team: ");
 			String teamName = in.nextLine();
 			foundTeams = fph.searchForTeamByTeam(teamName);
-		} else if (searchBy == 3) {
+		} else {
 			System.out.print("Enter the owner's name: ");
 			String ownerName = in.nextLine();
 			foundTeams = fph.searchForTeamByOwner(ownerName);
+		}
 
-			if (!foundTeams.isEmpty()) {
-				System.out.println("Found Results.");
-				for (footballPlayer l : foundTeams) {
-					System.out.println("ID: " + l.getId() + " - " + l.returnTeamDetails());
-				}
-				System.out.print("Which ID to edit: ");
-				int idToEdit = in.nextInt();
-				footballPlayer toEdit = fph.searchForTeamById(idToEdit);
-				System.out.println("Retrieved " + toEdit.getName() + " from " + toEdit.getTeam() + " Owned by "
-						+ toEdit.getOwner());
-				System.out.println("1 : Update Name");
-				System.out.println("2 : Update Team");
-				System.out.println("3 : Update Owner");
-				int update = in.nextInt();
-				in.nextLine();
-
-				if (update == 1) {
-					System.out.print("New Name: ");
-					String newName = in.nextLine();
-					toEdit.setName(newName);
-				} else if (update == 2) {
-					System.out.print("New Team: ");
-					String newTeam = in.nextLine();
-					toEdit.setTeam(newTeam);
-				} else if (update == 3) {
-					System.out.print("New Owner: ");
-					String newOwner = in.nextLine();
-					toEdit.setOwner(newOwner);
-				}
-
-				fph.updateTeam(toEdit);
-			} else {
-				System.out.println("---- No results found");
+		if (!foundTeams.isEmpty()) {
+			System.out.println("Found Results.");
+			for (footballPlayer l : foundTeams) {
+				System.out.println("ID: " + l.getId() + " - " + l.returnTeamDetails());
 			}
+			System.out.print("Which ID to edit: ");
+			int idToEdit = in.nextInt();
+			footballPlayer toEdit = fph.searchForTeamById(idToEdit);
+			System.out.println(
+					"Retrieved " + toEdit.getName() + " from " + toEdit.getTeam() + " Owned by " + toEdit.getOwner());
+			System.out.println("1 : Update Name");
+			System.out.println("2 : Update Team");
+			System.out.println("3 : Update Owner");
+			int update = in.nextInt();
+			in.nextLine();
+
+			if (update == 1) {
+				System.out.print("New Name: ");
+				String newName = in.nextLine();
+				toEdit.setName(newName);
+			} else if (update == 2) {
+				System.out.print("New Team: ");
+				String newTeam = in.nextLine();
+				toEdit.setTeam(newTeam);
+			} else if (update == 3) {
+				System.out.print("New Owner: ");
+				String newOwner = in.nextLine();
+				toEdit.setOwner(newOwner);
+			}
+
+			fph.updateTeam(toEdit);
+		} else {
+			System.out.println("---- No results found");
 		}
 	}
 
